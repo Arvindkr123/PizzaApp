@@ -1,4 +1,4 @@
-import { CategoryMenu, FoodItem, Navbar } from "../components";
+import { Cart, CategoryMenu, FoodItem, Navbar } from "../components";
 
 export default function Home() {
   return (
@@ -6,6 +6,7 @@ export default function Home() {
       <Navbar />
       <CategoryMenu />
       <FoodItem />
+      <Cart />
     </>
   );
 }
