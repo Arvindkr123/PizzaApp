@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 const Cart = () => {
   const [cartActive, setCartActive] = useState(true);
   const data = useSelector((state) => state.cart.cart);
+
   return (
     <>
       <div
@@ -23,9 +24,21 @@ const Cart = () => {
           </span>
         </div>
         {/* Item card added start */}
-        {data.map((ele) => {
-          return <CartItem key={ele.id} {...ele} />;
-        })}
+        {data.length > 0 ? (
+          data.map((ele) => {
+            return <CartItem key={ele.id} {...ele} />;
+          })
+        ) : (
+          <div className="flex justify-center flex-col gap-7">
+            <h2 className="text-center text-2xl">Your Cart is Empty</h2>
+            <button
+              onClick={() => setCartActive(false)}
+              className="bg-red-400 text-white p-3 hover:bg-red-500"
+            >
+              back to shoping
+            </button>
+          </div>
+        )}
         {/* Item card added  end */}
 
         {/* For the total amount */}
