@@ -6,19 +6,23 @@ import {
   increaseQty,
   removeFromCart,
 } from "../redux/slices/CartSlices";
+import { toast } from "react-toastify";
 
 const CartItem = ({ id, img, name, price, qty }) => {
   const dispatch = useDispatch();
 
   const handleIncreaseQty = () => {
     dispatch(increaseQty({ id }));
+    toast.success("Increase quantity successfully")
   };
 
   const handleDecreaseQty = () => {
     if (qty > 1) {
       dispatch(decreaseQty({ id }));
+      toast.success("Decrease quantity successfully")
     } else {
       dispatch(removeFromCart({ id, img, name, price, qty }));
+      toast.success("deleted item from cart  successfully")
     }
   };
 

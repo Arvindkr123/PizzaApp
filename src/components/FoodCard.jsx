@@ -2,6 +2,7 @@ import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/slices/CartSlices";
+import { toast } from "react-toastify";
 const FoodCard = ({ id, img, name, price, desc, category, rating }) => {
   const dispatch = useDispatch();
   return (
@@ -24,6 +25,7 @@ const FoodCard = ({ id, img, name, price, desc, category, rating }) => {
         <button
           onClick={() => {
             dispatch(addToCart({ id, img, name, price, qty: 1 }));
+            toast.success(`${name} added successfully`);
           }}
           className="rounded-lg text-sm p-1 text-white bg-green-500 hover:bg-green-600"
         >
