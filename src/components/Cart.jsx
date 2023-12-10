@@ -1,5 +1,6 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
+import CartItem from "./CartItem";
 const Cart = () => {
   return (
     <>
@@ -10,6 +11,14 @@ const Cart = () => {
             <IoMdClose className="cursor-pointer border-2 p-1 text-xl rounded-md hover:text-red-300 border-gray-600 text-gray-600 font-bold hover:border-red-300" />
           </span>
         </div>
+        {/* Item card added start */}
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        {/* Item card added  end */}
+
         {/* For the total amount */}
         <div className="absolute bottom-0">
           <h3 className="font-semibold text-gray-800">Items : </h3>
