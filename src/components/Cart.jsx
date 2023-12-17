@@ -3,11 +3,13 @@ import { IoMdClose } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
-  const [cartActive, setCartActive] = useState(true);
+  const [cartActive, setCartActive] = useState(false);
   const data = useSelector((state) => state.cart.cart);
   const totalQuantity = data.reduce((acc, cur) => acc + cur.qty, 0);
   const totalPrice = data.reduce((acc, cur) => acc + cur.price * cur.qty, 0);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -45,10 +47,17 @@ const Cart = () => {
 
         {/* For the total amount */}
         <div className="absolute bottom-0">
-          <h3 className="font-semibold text-gray-800">Items : {totalQuantity} </h3>
-          <h3 className="font-semibold text-gray-800">Total Amount : {totalPrice}</h3>
+          <h3 className="font-semibold text-gray-800">
+            Items : {totalQuantity}{" "}
+          </h3>
+          <h3 className="font-semibold text-gray-800">
+            Total Amount : {totalPrice}
+          </h3>
           <hr className=" w-[90vw] lg:w-[18vw] my-2" />
-          <button className="rounded-lg w-[90vw] lg:w-[18vw] bg-green-500 font-bold px-3 text-white py-2 mb-5">
+          <button
+            onClick={() => navigate("/success")}
+            className="rounded-lg w-[90vw] lg:w-[18vw] bg-green-500 font-bold px-3 text-white py-2 mb-5"
+          >
             Checkout
           </button>
         </div>
