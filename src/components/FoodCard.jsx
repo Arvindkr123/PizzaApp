@@ -13,7 +13,7 @@ const FoodCard = ({ id, img, name, price, desc, category, rating }) => {
         alt={name}
       />
       <div className="text-sm flex justify-between">
-        <h2>Onion Pizza</h2>
+        <h2>{name}</h2>
         <span className="text-green-500">₹{price}</span>
       </div>
       <p className="text-sm font-normal">{desc.slice(0, 50)}...</p>

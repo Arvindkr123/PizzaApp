@@ -5,13 +5,18 @@ import { useSelector } from "react-redux";
 
 const FoodItem = () => {
   const category = useSelector((state) => state.category.category);
+  const search = useSelector((state) => state.search.searchItem);
+  console.log(search);
   return (
     <div className="flex flex-wrap justify-center lg:justify-start mx-6 my-10 gap-10">
-      {FoodData.filter((item) => {
-        if (item.category === "All" || category === "All") {
-          return item;
+      {FoodData.filter((food) => {
+        if (food.category === "All" || category === "All") {
+          return food.name.toLowerCase().includes(search.toLowerCase());
         }
-        return item.category === category;
+        return (
+          food.category === category &&
+          food.name.toLowerCase().includes(search.toLowerCase())
+        );
       }).map((food) => {
         return <FoodCard key={food.id} {...food} />;
       })}
