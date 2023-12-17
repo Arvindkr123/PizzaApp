@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
 import CartItem from "./CartItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { reset } from "../redux/slices/CartSlices";
 const Cart = () => {
   const [cartActive, setCartActive] = useState(false);
   const data = useSelector((state) => state.cart.cart);
   const totalQuantity = data.reduce((acc, cur) => acc + cur.qty, 0);
   const totalPrice = data.reduce((acc, cur) => acc + cur.price * cur.qty, 0);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigateHandler = () => {
+    navigate("/success");
+  };
 
   return (
     <>
@@ -55,7 +60,7 @@ const Cart = () => {
           </h3>
           <hr className=" w-[90vw] lg:w-[18vw] my-2" />
           <button
-            onClick={() => navigate("/success")}
+            onClick={navigateHandler}
             className="rounded-lg w-[90vw] lg:w-[18vw] bg-green-500 font-bold px-3 text-white py-2 mb-5"
           >
             Checkout
